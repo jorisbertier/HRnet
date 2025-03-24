@@ -1,0 +1,34 @@
+.section-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.create-employee {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    width: 300px;
+}
+
+input {
+    background-color: white;
+    color: black;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+}
+
+.address {
+    border: 1px solid grey;
+    text-align: left;
+}
+
+.title-address {
+    margin-bottom: 20px;
+}
+
+.street, .city, .state, .zip-code {
+    margin-bottom: 10px;
+}
