@@ -1,11 +1,22 @@
 import React, { useState } from 'react'
 import '../css/form.css'
 import Modal from './Modal/Modal'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { registerLocale, setDefaultLocale } from "react-datepicker";
+import { fr } from 'date-fns/locale';
+import { format } from "date-fns";
+
 
 function Form() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [startDate, setStartDate] = useState(new Date());
     console.log(modalIsOpen)
+
+    console.log(format(startDate, "dd/MM/yyyy"))
+    registerLocale("fr", fr);
+    setDefaultLocale("fr");
 
     const handleSubmit = ()=> {
         setModalIsOpen(!modalIsOpen)
@@ -29,7 +40,7 @@ function Form() {
                     <input id="date-of-birth" type="text" />
 
                     <label htmlFor="start-date">Start Date</label>
-                    <input id="start-date" type="text" />
+                    <DatePicker selected={startDate} maxDate={new Date()} onChange={(date) => setStartDate(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
 
                     <fieldset className="address">
                         <legend className='title-address'>Address</legend>
