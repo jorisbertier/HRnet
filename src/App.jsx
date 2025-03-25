@@ -16,8 +16,6 @@ function App() {
       <Route path="/employeeList" element={<EmployeeList />} />
 
       </Routes>
-      {/* <Form/> */}
-
     </Router>
     </>
   )

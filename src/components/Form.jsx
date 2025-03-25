@@ -7,6 +7,7 @@ import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { fr } from 'date-fns/locale';
 import { format } from "date-fns";
 import DropDown from './DropDown/DropDown';
+import { Link } from 'react-router-dom';
 
 
 function Form() {
@@ -30,7 +31,7 @@ function Form() {
                 <h1>HRnet</h1>
             </div>
             <div className="form">
-                <a href="employee-list.html">View Current Employees</a>
+                <Link to="/employeeList">View Current Employee !</Link>
                 <h2>Create Employee</h2>
                 <form action="#" className="create-employee">
                     <label htmlFor="first-name">First Name</label>

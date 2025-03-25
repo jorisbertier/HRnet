@@ -48,6 +48,7 @@
     border: 1px solid black;
     border-radius: 8px;
     width: max-content;
+    z-index: 2;
 }
 
 
@@ -57,7 +58,8 @@
     padding: 8px;
     width: 280px;
     overflow: hidden;
-    height: 300px;
+    height: auto;
+    max-height: 300px;
     overflow-y:scroll;
 }
 

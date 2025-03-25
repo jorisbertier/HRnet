@@ -2,7 +2,7 @@ import React from 'react'
 
 function EmployeeList() {
     return (
-        <div>Current Employees</div>
+        <div><h2>Current Employees</h2></div>
     )
 }
 
