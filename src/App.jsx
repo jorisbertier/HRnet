@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Form from './components/Form';
+import Form from './components/Form/Form';
 import Home from './pages/Home'
 import EmployeeList from './pages/EmployeeList';
 
@@ -12,8 +12,8 @@ function App() {
     <>
     <Router>
       <Routes>
-      <Route path="/" element={<Form />} />
-      <Route path="/employeeList" element={<EmployeeList />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/employeeList" element={<EmployeeList />} />
 
       </Routes>
     </Router>
