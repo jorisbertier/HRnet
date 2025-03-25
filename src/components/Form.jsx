@@ -12,9 +12,10 @@ function Form() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [startDate, setStartDate] = useState(new Date());
-    console.log(modalIsOpen)
+    const [dateOfBirth, setDateOfBirth] = useState(new Date());
 
     console.log(format(startDate, "dd/MM/yyyy"))
+    
     registerLocale("fr", fr);
     setDefaultLocale("fr");
 
@@ -37,10 +38,10 @@ function Form() {
                     <input type="text" id="last-name" />
 
                     <label htmlFor="date-of-birth">Date of Birth</label>
-                    <input id="date-of-birth" type="text" />
+                    <DatePicker selected={dateOfBirth} showIcon maxDate={new Date()} onChange={(date) => setDateOfBirth(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
 
                     <label htmlFor="start-date">Start Date</label>
-                    <DatePicker selected={startDate} maxDate={new Date()} onChange={(date) => setStartDate(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
+                    <DatePicker selected={startDate} showIcon maxDate={new Date()} onChange={(date) => setStartDate(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
 
                     <fieldset className="address">
                         <legend className='title-address'>Address</legend>
