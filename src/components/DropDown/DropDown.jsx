@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './index.css'
 
-function DropDown() {
+function DropDown({list = states, title = 'Choisir un état'}) {
+
     const [isOpen, setIsOpen] = useState(false);
-    const [state, setState] = useState('Choisir un état')
-    const [isRotated, setIsRotated] = useState(false);
-
-    const toggleRotation = () => {
-        setIsRotated(!isRotated);
-    };
-
+    const [state, setState] = useState(title);
+    const dropdownRef = useRef(null);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -20,15 +16,28 @@ function DropDown() {
     }
 
     useEffect(() => {
-        console.log(state); // ✅ Ceci affichera la valeur correcte après mise à jour
+        console.log(state);
     }, [state]); 
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
 
     return (
     <div>
-        {/* <label className="mt-4">Assign user(s) to as task:</label> */}
-
-        <div className="dropdown-container">
-      {/* Bouton pour ouvrir/fermer */}
+        <div ref={dropdownRef} className="dropdown-container">
         <button type="button" className="dropdown-button" onClick={toggleDropdown}>
             <span>{state}</span>
             <span className={`icon ${isOpen ? "rotated" : ""}`}>
@@ -36,18 +45,17 @@ function DropDown() {
             </span>
         </button>
         {isOpen &&
-        <div className="dropdown">
-            <ul>
-            {states.map((state, index) => (
-                <li key={index} onClick={()=> handleStateName(state.name)}>
-                    <span>{state.name}</span>
-                </li>
-            ))}
-            </ul>
-        </div>
+            <div className="dropdown">
+                <ul>
+                {list.map((state, index) => (
+                    <li key={index} onClick={()=> handleStateName(state.name)}>
+                        <span>{state.name}</span>
+                    </li>
+                ))}
+                </ul>
+            </div>
         }
-        
-    </div>
+        </div>
     </div>
     );
 };

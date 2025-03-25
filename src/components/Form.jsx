@@ -59,25 +59,25 @@ function Form() {
 
                         <label htmlFor="zip-code">Zip Code</label><br></br>
                         <input className="zip-code" type="number" />
-                    </fieldset>
+                    </fieldset><br></br>
 
-                    <label htmlFor="department">Department</label>
-                    <select name="department" id="department">
-                        <option>Sales</option>
-                        <option>Marketing</option>
-                        <option>Engineering</option>
-                        <option>Human Resources</option>
-                        <option>Legal</option>
-                    </select>
+                    <label htmlFor="department">Department</label><br></br>
+                    <DropDown list={[
+                        { name: "Sales" },
+                        { name: "Marketing" },
+                        { name: "Engineering" },
+                        { name: "Human Resources" },
+                        { name: "Legal" }
+                    ]} title={'Choose a department'}/>
                 </form><br></br>
                 
 
                 <button onClick={handleSubmit}>Save</button>
-            {modalIsOpen &&
-            <Modal closeModal={() => setModalIsOpen(false)}/>
-            }
-            </div>
-            {/* <div id="confirmation" className="modal">Employee Created!</div> */}
+                {modalIsOpen &&
+                <Modal closeModal={() => setModalIsOpen(false)}/>
+                }
+                </div>
+                {/* <div id="confirmation" className="modal">Employee Created!</div> */}
             </div>
     )
 }
