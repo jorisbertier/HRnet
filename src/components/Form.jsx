@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { fr } from 'date-fns/locale';
 import { format } from "date-fns";
+import DropDown from './DropDown/DropDown';
 
 
 function Form() {
@@ -15,13 +16,14 @@ function Form() {
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
 
     console.log(format(startDate, "dd/MM/yyyy"))
-    
+
     registerLocale("fr", fr);
     setDefaultLocale("fr");
 
     const handleSubmit = ()=> {
         setModalIsOpen(!modalIsOpen)
     }
+
     return (
         <div className="section-form">
             <div className="title">
@@ -53,7 +55,7 @@ function Form() {
                         <input className="city" type="text" /><br></br>
 
                         <label htmlFor="state">State</label><br></br>
-                        <select name="state" className="state"></select><br></br>
+                        <DropDown/><br></br>
 
                         <label htmlFor="zip-code">Zip Code</label><br></br>
                         <input className="zip-code" type="number" />
