@@ -7,8 +7,8 @@ import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { fr } from 'date-fns/locale';
 import { format } from "date-fns";
 import DropDown from '../DropDown/DropDown';
-import { Link } from 'react-router-dom';
-
+import States from '../../datas/states.json'
+import Department from '../../datas/department.json'
 
 function Form() {
 
@@ -65,20 +65,14 @@ function Form() {
                     <input className="city" type="text" onChange={(e) => setCity(e.target.value)} /><br></br>
 
                     <label htmlFor="state">State</label><br></br>
-                    <DropDown/><br></br>
+                    <DropDown data={States} title={'Choisir un état'}/><br></br>
 
                     <label htmlFor="zip-code">Zip Code</label><br></br>
                     <input className="zip-code" type="number" onChange={(e) => setZipCode(e.target.value)}  />
                 </fieldset><br></br>
 
                 <label htmlFor="department">Department</label><br></br>
-                <DropDown list={[
-                    { name: "Sales" },
-                    { name: "Marketing" },
-                    { name: "Engineering" },
-                    { name: "Human Resources" },
-                    { name: "Legal" }
-                ]} title={'Choose a department'}/>
+                <DropDown data={Department} title={'Choose a department'}/>
             </form><br></br><br></br>
             
 
