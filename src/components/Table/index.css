@@ -13,14 +13,23 @@
     align-items: center;
     height: 10vh;
 }
+
 .table-title {
     display: flex;
     align-items: center;
+    font-size: 14px;
+    word-spacing: 5px;
 }
+
 .search-box {
     display: flex;
     align-items: center;
     gap: 30px;
+}
+
+option, select {
+    background-color: white;
+    color: black;
 }
 
 .table {
@@ -30,7 +39,7 @@
 
 tr{
     border-bottom: 1px solid black;
-    font-size: 14px;
+    font-size: 16px;
 }
 thead th {
     background-color: white !important;
@@ -45,7 +54,7 @@ td {
     border-bottom: 1px solid #ddd;
     padding: 8px 10px;
     color: black;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 th {

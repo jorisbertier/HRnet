@@ -4,7 +4,7 @@ import Table from '../components/Table'
 function EmployeeList() {
     return (
         <div>
-            <h2>Current Employees</h2>
+            <h1 style={{fontWeight: 'bold'}}>Current Employees</h1>
             <Table/>
         </div>
     )

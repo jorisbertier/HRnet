@@ -58,7 +58,12 @@ const Table = () => {
         <div className="table-container">
             <div className="table-controls">
                 <div className="table-title">
-                    <label>Show <select><option>10</option></select> entries</label>
+                    <label>Show <select>
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                        <option>100</option>
+                        </select> entries</label>
                 </div>
                 <div className="search-box">
                     <label>Search: <input type="text" /></label>
