@@ -1,21 +1,14 @@
 import React, { useMemo } from "react";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
+import './index.css'
 
 const Table = () => {
 
     const data = useMemo(
         () => [
-        {
-            firstName: "Alice",
-            lastName: "Johnson",
-            startDate: "2022-05-10",
-            department: "Marketing",
-            dateOfBirth: "1990-03-15",
-            street: "123 Main St",
-            city: "New York",
-            state: "NY",
-            zipCode: "10001",
-        },
+        {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
+        {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
+        {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
         {
             firstName: "Bob",
             lastName: "Smith",
@@ -55,7 +48,6 @@ const Table = () => {
         []
     );
 
-    // Initialisation de TanStack Table
     const table = useReactTable({
         data,
         columns,
@@ -63,30 +55,42 @@ const Table = () => {
     });
 
     return (
-        <table border="1">
-        <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
+        <div className="table-container">
+            <div className="table-controls">
+                <div className="table-title">
+                    <label>Show <select><option>10</option></select> entries</label>
+                </div>
+                <div className="search-box">
+                    <label>Search: <input type="text" /></label>
+                </div>
+            </div>
+
+            
+            <table className="table">
+                <thead>
+                    {table.getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => (
+                        <th key={header.id}>
+                            {flexRender(header.column.columnDef.header, header.getContext())}
+                        </th>
+                        ))}
+                    </tr>
+                    ))}
+                </thead>
+            <tbody>
+                {table.getRowModel().rows.map((row) => (
+                <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className={cell.column.id === "dateOfBirth" ? "sorting_1" : ""}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                    ))}
+                </tr>
                 ))}
-            </tr>
-            ))}
-        </thead>
-        <tbody>
-            {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-                ))}
-            </tr>
-            ))}
-        </tbody>
-        </table>
+            </tbody>
+            </table>
+        </div>
     );
 };
 
