@@ -66,7 +66,8 @@ const Table = () => {
                         </select> entries</label>
                 </div>
                 <div className="search-box">
-                    <label>Search: <input type="text" /></label>
+                    <label>Search:</label>
+                    <input type="text" />
                 </div>
             </div>
 
@@ -87,7 +88,7 @@ const Table = () => {
                 {table.getRowModel().rows.map((row) => (
                 <tr key={row.id}>
                     {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className={cell.column.id === "dateOfBirth" ? "sorting_1" : ""}>
+                    <td key={cell.id} className={cell.column.id === "firstName" ? "sorting_1" : ""}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                     ))}
@@ -95,6 +96,14 @@ const Table = () => {
                 ))}
             </tbody>
             </table>
+            <div className="pagination-container">
+                <div>Showing 1 to 5 to 5 entries</div>
+                <div className="pagination">
+                    <button className="prev">Previous</button>
+                    <span className="numerotation">1</span>
+                    <button className="next">Next</button>
+                </div>
+            </div>
         </div>
     );
 };
