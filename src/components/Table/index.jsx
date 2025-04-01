@@ -1,12 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel } from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel, getPaginationRowModel } from "@tanstack/react-table";
 import './index.css'
 
 const Table = () => {
 
-   
     const [employees, setEmployees] = useState([]);
     const [search, setSearch] = useState('')
+    const [pagination, setPagination] = useState({
+        pageIndex: 0, //initial page index
+        pageSize: 5, //default page size
+    });
 
     useEffect(() => {
         const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
@@ -70,6 +73,12 @@ const Table = () => {
         columns,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+        onPaginationChange: setPagination, //update the pagination state when internal APIs mutate the pagination state
+        state: {
+          //...
+          pagination,
+        },
         // state: {
         //     globalFilter: setSearch,
         // },
@@ -79,11 +88,16 @@ const Table = () => {
         <div className="table-container">
             <div className="table-controls">
                 <div className="table-title">
-                    <label>Show <select>
-                        <option>10</option>
-                        <option>25</option>
-                        <option>50</option>
-                        <option>100</option>
+                    <label>Show
+                        <select onChange={(e) => setPagination(prev => ({
+                            ...prev,
+                            pageSize: Number(e.target.value)
+                        })) }>
+                            <option>5</option>
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
                         </select> entries</label>
                 </div>
                 <div className="search-box">
