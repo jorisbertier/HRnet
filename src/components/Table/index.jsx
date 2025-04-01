@@ -78,10 +78,6 @@ const Table = () => {
         state: {
             pagination,
         },
-        // state: {
-        //     globalFilter: setSearch,
-        // },
-        // onGlobalFilterChange: setSearch, 
     });
 
     const currentPage = pagination.pageIndex + 1;
