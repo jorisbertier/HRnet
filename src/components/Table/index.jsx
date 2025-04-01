@@ -7,10 +7,11 @@ const Table = () => {
     const [employees, setEmployees] = useState([]);
     const [search, setSearch] = useState('')
     const [pagination, setPagination] = useState({
-        pageIndex: 0, //initial page index
-        pageSize: 5, //default page size
+        pageIndex: 0,
+        pageSize: 5,
     });
-
+    
+    console.log('pagination', pagination.pageIndex)
     useEffect(() => {
         const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
         setEmployees(storedEmployees);
@@ -74,31 +75,35 @@ const Table = () => {
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-        onPaginationChange: setPagination, //update the pagination state when internal APIs mutate the pagination state
+        onPaginationChange: setPagination,
         state: {
-          //...
-          pagination,
+            pagination,
         },
         // state: {
         //     globalFilter: setSearch,
         // },
         // onGlobalFilterChange: setSearch, 
     });
+
+
     return (
         <div className="table-container">
             <div className="table-controls">
                 <div className="table-title">
                     <label>Show
-                        <select onChange={(e) => setPagination(prev => ({
-                            ...prev,
-                            pageSize: Number(e.target.value)
-                        })) }>
-                            <option>5</option>
-                            <option>10</option>
-                            <option>25</option>
-                            <option>50</option>
-                            <option>100</option>
-                        </select> entries</label>
+                                        <select
+                    value={table.getState().pagination.pageSize}
+                    onChange={e => {
+                        table.setPageSize(Number(e.target.value))
+                    }}
+                    >
+                    {[5, 10, 20, 30, 40, 50].map(pageSize => (
+                        <option key={pageSize} value={pageSize}>
+                        {pageSize}
+                        </option>
+                    ))}
+                    </select>
+                    </label>
                 </div>
                 <div className="search-box">
                     <label>Search:</label>
@@ -135,9 +140,9 @@ const Table = () => {
             <div className="pagination-container">
                 <div>Showing 1 to 5 to 5 entries</div>
                 <div className="pagination">
-                    <button className="prev">Previous</button>
-                    <span className="numerotation">1</span>
-                    <button className="next">Next</button>
+                    <button className="prev" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</button>
+                    <span className="numerotation">{pagination.pageIndex + 1}</span>
+                    <button className="next" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
                 </div>
             </div>
         </div>
