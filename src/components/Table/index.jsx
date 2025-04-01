@@ -1,37 +1,46 @@
-import React, { useMemo } from "react";
-import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
+import React, { useEffect, useMemo, useState } from "react";
+import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel } from "@tanstack/react-table";
 import './index.css'
 
 const Table = () => {
 
-    const data = useMemo(
-        () => [
-        {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
-        {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
-        {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
-        {
-            firstName: "Bob",
-            lastName: "Smith",
-            startDate: "2021-08-22",
-            department: "Finance",
-            dateOfBirth: "1985-07-19",
-            street: "456 Elm St",
-            city: "Los Angeles",
-            state: "CA",
-            zipCode: "90012",
-        },
-        {
-            firstName: "Charlie",
-            lastName: "Brown",
-            startDate: "2023-02-17",
-            department: "HR",
-            dateOfBirth: "1995-12-05",
-            street: "789 Oak St",
-            city: "Chicago",
-            state: "IL",
-            zipCode: "60601",
-        },
-    ])
+   
+    const [employees, setEmployees] = useState([]);
+    const [search, setSearch] = useState('')
+
+    useEffect(() => {
+        const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+        setEmployees(storedEmployees);
+    }, []);
+
+    // const data = useMemo(
+    //     () => [
+    //     {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
+    //     {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
+    //     {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
+    //     {
+    //         firstName: "Bob",
+    //         lastName: "Smith",
+    //         startDate: "2021-08-22",
+    //         department: "Finance",
+    //         dateOfBirth: "1985-07-19",
+    //         street: "456 Elm St",
+    //         city: "Los Angeles",
+    //         state: "CA",
+    //         zipCode: "90012",
+    //     },
+    //     {
+    //         firstName: "Charlie",
+    //         lastName: "Brown",
+    //         startDate: "2023-02-17",
+    //         department: "HR",
+    //         dateOfBirth: "1995-12-05",
+    //         street: "789 Oak St",
+    //         city: "Chicago",
+    //         state: "IL",
+    //         zipCode: "60601",
+    //     },
+    // ])
 
     const columns = useMemo(
         () => [
@@ -48,12 +57,24 @@ const Table = () => {
         []
     );
 
+    const filteredData = useMemo(() => {
+        return employees.filter(employee => 
+            Object.values(employee).some(value =>
+                value.toString().toLowerCase().includes(search.toLowerCase())
+            )
+        )      
+    }, [employees, search]);
+
     const table = useReactTable({
-        data,
+        data : filteredData,
         columns,
         getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        // state: {
+        //     globalFilter: setSearch,
+        // },
+        // onGlobalFilterChange: setSearch, 
     });
-
     return (
         <div className="table-container">
             <div className="table-controls">
@@ -67,7 +88,7 @@ const Table = () => {
                 </div>
                 <div className="search-box">
                     <label>Search:</label>
-                    <input type="text" />
+                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
             </div>
 
@@ -95,6 +116,7 @@ const Table = () => {
                 </tr>
                 ))}
             </tbody>
+                {employees.length === 0 && <tr className="no-data">No Data Available</tr>}
             </table>
             <div className="pagination-container">
                 <div>Showing 1 to 5 to 5 entries</div>

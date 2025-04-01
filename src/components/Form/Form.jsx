@@ -53,7 +53,7 @@ function Form() {
             zipCode: zipCode
         };
         employees.push(employee);
-        localStorage.setItem("name", JSON.stringify(employees));
+        localStorage.setItem("employees", JSON.stringify(employees));
         console.log('bien envoyé ',employee)
     }
 
