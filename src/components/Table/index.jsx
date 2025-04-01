@@ -11,7 +11,6 @@ const Table = () => {
         pageSize: 5,
     });
     
-    console.log('pagination', pagination.pageIndex)
     useEffect(() => {
         const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
         setEmployees(storedEmployees);
@@ -85,6 +84,10 @@ const Table = () => {
         // onGlobalFilterChange: setSearch, 
     });
 
+    const currentPage = pagination.pageIndex + 1;
+    const rowsPerPage = Math.min((pagination.pageIndex + 1) *pagination.pageSize, filteredData.length);
+    const rowsPerPageInitial = (pagination.pageIndex * pagination.pageSize) + 1;
+
 
     return (
         <div className="table-container">
@@ -135,13 +138,13 @@ const Table = () => {
                 </tr>
                 ))}
             </tbody>
-                {employees.length === 0 && <tr className="no-data">No Data Available</tr>}
+                {/* {employees.length === 0 && <tr className="no-data">No Data Available</tr>} */}
             </table>
             <div className="pagination-container">
-                <div>Showing 1 to 5 to 5 entries</div>
+                <div>Showing {rowsPerPageInitial} to {rowsPerPage} of {filteredData.length} entries</div>
                 <div className="pagination">
                     <button className="prev" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</button>
-                    <span className="numerotation">{pagination.pageIndex + 1}</span>
+                    <span className="numerotation">{currentPage}</span>
                     <button className="next" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
                 </div>
             </div>
