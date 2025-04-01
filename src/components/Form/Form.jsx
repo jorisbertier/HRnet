@@ -21,8 +21,8 @@ function Form() {
     const [zipCode, setZipCode] = useState('');
     const [startDate, setStartDate] = useState(new Date());
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
-
-    
+    const [selectedState, setSelectedState] = useState('');
+    const [selectedDepartment, setSelectedDepartment] = useState('');
 
     registerLocale("fr", fr);
     setDefaultLocale("fr");
@@ -34,11 +34,21 @@ function Form() {
         console.log(street)
         console.log(city)
         console.log(zipCode)
+        console.log(selectedState)
+        console.log(selectedDepartment)
 
         console.log(format(startDate, "dd/MM/yyyy"))
         console.log(format(dateOfBirth, "dd/MM/yyyy"))
-        setModalIsOpen(!modalIsOpen)
     }
+
+    const handleSelectedState = (newState) => {
+        setSelectedState(newState);
+    };
+
+    const handleSelectedDepartment = (newDepartment) => {
+        setSelectedDepartment(newDepartment);
+        console.log('department', newDepartment)
+    };
 
     return (
         <>
@@ -65,14 +75,14 @@ function Form() {
                     <input className="city" type="text" onChange={(e) => setCity(e.target.value)} /><br></br>
 
                     <label htmlFor="state">State</label><br></br>
-                    <DropDown data={States} title={'Choisir un état'}/><br></br>
+                    <DropDown data={States} title={'Choisir un état'} getData={handleSelectedState}/><br></br>
 
                     <label htmlFor="zip-code">Zip Code</label><br></br>
                     <input className="zip-code" type="number" onChange={(e) => setZipCode(e.target.value)}  />
                 </fieldset><br></br>
 
                 <label htmlFor="department">Department</label><br></br>
-                <DropDown data={Department} title={'Choose a department'}/>
+                <DropDown data={Department} title={'Choose a department'} getData={handleSelectedDepartment}/>
             </form><br></br><br></br>
             
 
