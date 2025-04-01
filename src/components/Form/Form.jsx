@@ -29,16 +29,6 @@ function Form() {
 
     const handleSubmit = (event)=> {
         event.preventDefault()
-        // console.log(lastName)
-        // console.log(firstName)
-        // console.log(street)
-        // console.log(city)
-        // console.log(zipCode)
-        // console.log(selectedState)
-        // console.log(selectedDepartment)
-
-        // console.log(format(startDate, "dd/MM/yyyy"))
-        // console.log(format(dateOfBirth, "dd/MM/yyyy"))
 
         const employees = JSON.parse(localStorage.getItem('employees')) || [];
         const employee = {
@@ -54,7 +44,7 @@ function Form() {
         };
         employees.push(employee);
         localStorage.setItem("employees", JSON.stringify(employees));
-        console.log('bien envoyé ',employee)
+        setModalIsOpen(true)
     }
 
     const handleSelectedState = (newState) => {
@@ -63,7 +53,6 @@ function Form() {
 
     const handleSelectedDepartment = (newDepartment) => {
         setSelectedDepartment(newDepartment);
-        console.log('department', newDepartment)
     };
 
     return (
@@ -104,7 +93,7 @@ function Form() {
 
             <button onClick={handleSubmit} className="button">Save</button>
             {modalIsOpen &&
-            <Modal closeModal={() => setModalIsOpen(false)}/>
+            <Modal closeModal={() => setModalIsOpen(false)} text={'Employee Created !'}/>
             }
         </>
     )
