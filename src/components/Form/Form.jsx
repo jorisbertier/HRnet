@@ -102,7 +102,7 @@ function Form() {
             </form><br></br><br></br>
             
 
-            <button onClick={handleSubmit}>Save</button>
+            <button onClick={handleSubmit} className="button">Save</button>
             {modalIsOpen &&
             <Modal closeModal={() => setModalIsOpen(false)}/>
             }
