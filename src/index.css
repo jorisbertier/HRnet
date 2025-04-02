@@ -1,5 +1,4 @@
 :root {
-  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;*/
   font-family: "Times New Roman", Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -26,8 +25,6 @@ a:hover {
 body {
   margin: 0;
   padding: 0;
-  /* display: flex; */
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
   color: black;
@@ -53,16 +50,3 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
