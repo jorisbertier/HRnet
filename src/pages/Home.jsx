@@ -9,7 +9,7 @@ function Home() {
             <div className="title">
                 <h1>HRnet</h1>
             </div>
-            <Link to="/employeeList">View Current Employee !</Link>
+            <Link to="/employeeList" style={{color: 'black', textDecoration: 'underline black'}}>View Current Employee !</Link>
             <h2>Create Employee</h2>
             <div className="form">
                 <Form/>
