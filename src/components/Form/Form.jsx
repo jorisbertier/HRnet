@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './form.css'
-import Modal from '../Modal/Modal'
+import Modal from 'hrnet-plugin-modal'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
@@ -92,6 +92,7 @@ function Form() {
             
 
             <button onClick={handleSubmit} className="button">Save</button>
+            {/* <button onClick={()=>  setModalIsOpen(true)} className="button">ouvrir</button> */}
             {modalIsOpen &&
             <Modal closeModal={() => setModalIsOpen(false)} text={'Employee Created !'}/>
             }
