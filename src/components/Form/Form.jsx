@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import DropDown from '../DropDown/DropDown';
 import States from '../../datas/states.json'
 import Department from '../../datas/department.json'
+import { useEmployees } from '../../context/EmployeeContext';
 
 function Form() {
 
@@ -27,10 +28,12 @@ function Form() {
     registerLocale("fr", fr);
     setDefaultLocale("fr");
 
+    const { addEmployee } = useEmployees();
+
     const handleSubmit = (event)=> {
         event.preventDefault()
 
-        const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        // const employees = JSON.parse(localStorage.getItem('employees')) || [];
         const employee = {
             firstName: firstName,
             lastName: lastName,
@@ -42,8 +45,10 @@ function Form() {
             state: selectedState,
             zipCode: zipCode
         };
-        employees.push(employee);
-        localStorage.setItem("employees", JSON.stringify(employees));
+        // employees.push(employee);
+        // localStorage.setItem("employees", JSON.stringify(employees));
+        // setModalIsOpen(true)
+        addEmployee(employee)
         setModalIsOpen(true)
     }
 

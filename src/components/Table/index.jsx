@@ -1,20 +1,24 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel, getPaginationRowModel } from "@tanstack/react-table";
 import './index.css'
+import { useEmployees } from "../../context/EmployeeContext";
 
 const Table = () => {
 
-    const [employees, setEmployees] = useState([]);
+    // const [employees, setEmployees] = useState([]);
     const [search, setSearch] = useState('')
     const [pagination, setPagination] = useState({
         pageIndex: 0,
         pageSize: 5,
     });
+
+    const { employees } = useEmployees()
+    console.log('gestion detat', employees)
     
-    useEffect(() => {
-        const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-        setEmployees(storedEmployees);
-    }, []);
+    // useEffect(() => {
+    //     const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+    //     setEmployees(storedEmployees);
+    // }, []);
 
     // const data = useMemo(
     //     () => [
@@ -134,7 +138,7 @@ const Table = () => {
                 </tr>
                 ))}
             </tbody>
-                {/* {employees.length === 0 && <tr className="no-data">No Data Available</tr>} */}
+                {employees.length === 0 && <tr className="no-data">No Data Available</tr>}
             </table>
             <div className="pagination-container">
                 <div>Showing {rowsPerPageInitial} to {rowsPerPage} of {filteredData.length} entries</div>
