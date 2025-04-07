@@ -51,8 +51,6 @@ const Table = () => {
     const currentPage = pagination.pageIndex + 1;
     const rowsPerPage = Math.min((pagination.pageIndex + 1) *pagination.pageSize, filteredData.length);
     const rowsPerPageInitial = (pagination.pageIndex * pagination.pageSize) + 1;
-
-
     return (
         <div className="table-container">
             <div className="table-controls">
@@ -101,13 +99,21 @@ const Table = () => {
                     ))}
                 </tr>
                 ))}
+            {employees.length === 0 && (
+                <tr>
+                <td colSpan={columns.length} style={{ textAlign: "center", padding: "1rem" }}>
+                    No Data Available
+                </td>
+                </tr>
+                )}
             </tbody>
-                {employees.length === 0 && <tr className="no-data">No Data Available</tr>}
             </table>
             <div className="pagination-container">
                 <div>Showing {rowsPerPageInitial} to {rowsPerPage} of {filteredData.length} entries</div>
                 <div className="pagination">
+                    {!currentPage === 1 &&
                     <button className="prev" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</button>
+                    }
                     <span className="numerotation">{currentPage}</span>
                     <button className="next" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
                 </div>

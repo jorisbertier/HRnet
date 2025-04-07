@@ -34,7 +34,7 @@ function Form() {
     const handleSubmit = (event)=> {
         event.preventDefault()
 
-        if(firstName.length < 2 || lastName.length <2, city.length <2 || street.length <2 || zipCode.length < 2 || selectedState === '' || selectedDepartment === '') {
+        if(firstName.length < 2 || lastName.length <2 || city.length <2 || street.length <2 || zipCode.length < 2 || selectedState === '' || selectedDepartment === '') {
             setErrorMessage(true)
             return;
         }
@@ -101,7 +101,7 @@ function Form() {
                 <label htmlFor="department">Department</label><br></br>
                 <DropDown data={Department} title={'Choose a department'} getData={handleSelectedDepartment}/>
             </form><br></br>
-            {!errorMessage && <span className='error'>Veuillez remplir correctement les champs du formulaire ! </span>}
+            {errorMessage && <span className='error'>Veuillez remplir correctement les champs du formulaire ! </span>}
             
             <br></br>
 
