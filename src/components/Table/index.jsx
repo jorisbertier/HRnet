@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel, getPaginationRowModel } from "@tanstack/react-table";
 import './index.css'
 import { useEmployees } from "../../context/EmployeeContext";
 
 const Table = () => {
 
-    // const [employees, setEmployees] = useState([]);
     const [search, setSearch] = useState('')
     const [pagination, setPagination] = useState({
         pageIndex: 0,
@@ -13,41 +12,6 @@ const Table = () => {
     });
 
     const { employees } = useEmployees()
-    console.log('gestion detat', employees)
-    
-    // useEffect(() => {
-    //     const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-    //     setEmployees(storedEmployees);
-    // }, []);
-
-    // const data = useMemo(
-    //     () => [
-    //     {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
-    //     {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
-    //     {firstName: "Alice",lastName: "Johnson",startDate: "2022-05-10",department: "Marketing",dateOfBirth: "1990-03-15",street: "123 Main St",city: "New York",state: "NY",zipCode: "10001",},
-    //     {
-    //         firstName: "Bob",
-    //         lastName: "Smith",
-    //         startDate: "2021-08-22",
-    //         department: "Finance",
-    //         dateOfBirth: "1985-07-19",
-    //         street: "456 Elm St",
-    //         city: "Los Angeles",
-    //         state: "CA",
-    //         zipCode: "90012",
-    //     },
-    //     {
-    //         firstName: "Charlie",
-    //         lastName: "Brown",
-    //         startDate: "2023-02-17",
-    //         department: "HR",
-    //         dateOfBirth: "1995-12-05",
-    //         street: "789 Oak St",
-    //         city: "Chicago",
-    //         state: "IL",
-    //         zipCode: "60601",
-    //     },
-    // ])
 
     const columns = useMemo(
         () => [

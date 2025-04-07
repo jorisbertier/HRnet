@@ -24,6 +24,7 @@ function Form() {
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
     const [selectedState, setSelectedState] = useState('');
     const [selectedDepartment, setSelectedDepartment] = useState('');
+    const [errorMessage, setErrorMessage] = useState(false)
 
     registerLocale("fr", fr);
     setDefaultLocale("fr");
@@ -33,7 +34,13 @@ function Form() {
     const handleSubmit = (event)=> {
         event.preventDefault()
 
-        // const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        if(firstName.length < 2 || lastName.length <2, city.length <2 || street.length <2 || zipCode.length < 2 || selectedState === '' || selectedDepartment === '') {
+            setErrorMessage(true)
+            return;
+        }
+
+        setErrorMessage(false)
+
         const employee = {
             firstName: firstName,
             lastName: lastName,
@@ -93,8 +100,10 @@ function Form() {
 
                 <label htmlFor="department">Department</label><br></br>
                 <DropDown data={Department} title={'Choose a department'} getData={handleSelectedDepartment}/>
-            </form><br></br><br></br>
+            </form><br></br>
+            {!errorMessage && <span className='error'>Veuillez remplir correctement les champs du formulaire ! </span>}
             
+            <br></br>
 
             <button onClick={handleSubmit} className="button">Save</button>
             {/* <button onClick={()=>  setModalIsOpen(true)} className="button">ouvrir</button> */}
