@@ -77,25 +77,25 @@ function Form() {
                 <input type="text" id="last-name" onChange={(e) => setLastName(e.target.value)} />
 
                 <label htmlFor="date-of-birth">Date of Birth</label>
-                <DatePicker selected={dateOfBirth} showIcon maxDate={new Date()} onChange={(date) => setDateOfBirth(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
+                <DatePicker id="date-of-birth" selected={dateOfBirth} showIcon maxDate={new Date()} onChange={(date) => setDateOfBirth(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
 
                 <label htmlFor="start-date">Start Date</label>
-                <DatePicker selected={startDate} showIcon maxDate={new Date()} onChange={(date) => setStartDate(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
+                <DatePicker id="start-date" selected={startDate} showIcon maxDate={new Date()} onChange={(date) => setStartDate(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
 
                 <fieldset className="address">
                     <legend className='title-address'>Address</legend>
 
                     <label htmlFor="street">Street</label><br></br>
-                    <input className="street" type="text" onChange={(e) => setStreet(e.target.value)} /><br></br>
+                    <input id="street" className="street" type="text" onChange={(e) => setStreet(e.target.value)} /><br></br>
 
                     <label htmlFor="city">City</label><br></br>
-                    <input className="city" type="text" onChange={(e) => setCity(e.target.value)} /><br></br>
+                    <input id="city" className="city" type="text" onChange={(e) => setCity(e.target.value)} /><br></br>
 
                     <label htmlFor="state">State</label><br></br>
-                    <DropDown data={States} title={'Choisir un état'} getData={handleSelectedState}/><br></br>
+                    <DropDown id="state" data={States} title={'Choisir un état'} getData={handleSelectedState}/><br></br>
 
                     <label htmlFor="zip-code">Zip Code</label><br></br>
-                    <input className="zip-code" type="number" onChange={(e) => setZipCode(e.target.value)}  />
+                    <input id="zip-code" className="zip-code" type="number" onChange={(e) => setZipCode(e.target.value)}  />
                 </fieldset><br></br>
 
                 <label htmlFor="department">Department</label><br></br>
