@@ -27,9 +27,7 @@ const Table = () => {
         ],
         []
     );
-
-    console.log('employee', employees)
-
+    
     const filteredData = useMemo(() => {
         return employees.filter(employee => 
             Object.values(employee).some(value =>

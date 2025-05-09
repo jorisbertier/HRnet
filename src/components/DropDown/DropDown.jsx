@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './index.css'
 
-function DropDown({data, title, getData}) {
+function DropDown({data, title, getData, value}) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [dataDropdown, setDataDropdown] = useState(title);
@@ -14,6 +14,11 @@ function DropDown({data, title, getData}) {
         setDataDropdown(name)
         getData(name)
     }
+
+    useEffect(() => {
+        setDataDropdown(value || title)
+    }, [value, title]);
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {

@@ -51,11 +51,9 @@ function Form() {
             state: selectedState,
             zipCode: zipCode
         };
-        // employees.push(employee);
-        // localStorage.setItem("employees", JSON.stringify(employees));
-        // setModalIsOpen(true)
         addEmployee(employee)
         setModalIsOpen(true)
+        resetForm()
     }
 
     const handleSelectedState = (newState) => {
@@ -65,15 +63,27 @@ function Form() {
     const handleSelectedDepartment = (newDepartment) => {
         setSelectedDepartment(newDepartment);
     };
+    const resetForm = () => {
+        console.log('reste from')
+        setFirstName('');
+        setLastName('');
+        setDateOfBirth(new Date());
+        setStartDate(new Date());
+        setStreet('');
+        setCity('');
+        setZipCode('');
+        setSelectedState('Choisir un état');
+        setSelectedDepartment('Choisir un département');
+    }
 
     return (
         <>
             <form action="#"  onSubmit={handleSubmit} className="create-employee">
                 <label htmlFor="first-name">First Name</label>
-                <input type="text" id="first-name" onChange={(e) => setFirstName(e.target.value)} />
+                <input type="text" value={firstName} id="first-name" onChange={(e) => setFirstName(e.target.value)} />
 
                 <label htmlFor="last-name">Last Name</label>
-                <input type="text" id="last-name" onChange={(e) => setLastName(e.target.value)} />
+                <input type="text" value={lastName} id="last-name" onChange={(e) => setLastName(e.target.value)} />
 
                 <label htmlFor="date-of-birth">Date of Birth</label>
                 <DatePicker id="date-of-birth" selected={dateOfBirth} showIcon maxDate={new Date()} onChange={(date) => setDateOfBirth(date)}  locale="fr" dateFormat="dd/MM/yyyy"/>
@@ -85,20 +95,20 @@ function Form() {
                     <legend className='title-address'>Address</legend>
 
                     <label htmlFor="street">Street</label><br></br>
-                    <input id="street" className="street" type="text" onChange={(e) => setStreet(e.target.value)} /><br></br>
+                    <input id="street" value={street} className="street" type="text" onChange={(e) => setStreet(e.target.value)} /><br></br>
 
                     <label htmlFor="city">City</label><br></br>
-                    <input id="city" className="city" type="text" onChange={(e) => setCity(e.target.value)} /><br></br>
+                    <input id="city" value={city} className="city" type="text" onChange={(e) => setCity(e.target.value)} /><br></br>
 
                     <label htmlFor="state">State</label><br></br>
-                    <DropDown id="state" data={States} title={'Choisir un état'} getData={handleSelectedState}/><br></br>
+                    <DropDown id="state" value={selectedState} data={States} title={'Choisir un état'} getData={handleSelectedState}/><br></br>
 
                     <label htmlFor="zip-code">Zip Code</label><br></br>
-                    <input id="zip-code" className="zip-code" type="number" onChange={(e) => setZipCode(e.target.value)}  />
+                    <input id="zip-code" value={zipCode} className="zip-code" type="number" onChange={(e) => setZipCode(e.target.value)}  />
                 </fieldset><br></br>
 
                 <label htmlFor="department">Department</label><br></br>
-                <DropDown data={Department} title={'Choose a department'} getData={handleSelectedDepartment}/><br></br><br></br>
+                <DropDown data={Department} value={selectedDepartment} title={'Choisir un département'} getData={handleSelectedDepartment}/><br></br><br></br>
             {errorMessage && <span className='error'>Veuillez remplir correctement les champs du formulaire ! </span>}<br></br>
             <button type="submit" className="button">Save</button>
             </form><br></br>
