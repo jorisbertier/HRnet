@@ -40,7 +40,6 @@ function Form() {
         }
 
         setErrorMessage(false)
-
         const employee = {
             firstName: firstName,
             lastName: lastName,

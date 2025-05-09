@@ -1,0 +1,69 @@
+
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "dateOfBirth": "04/05/2000",
+        "startDate": "10/10/2019",
+        "department": "Sales",
+        "street": "14 rue duhamel",
+        "city": "Lyon",
+        "state": "Alakama",
+        "zipCode": 69000
+    },
+    {
+        "firstName": "Julie",
+        "lastName": "Trend",
+        "dateOfBirth": "04/05/1999",
+        "startDate": "10/10/2018",
+        "department": "Human Resources",
+        "street": "5 rue lamarmitte",
+        "city": "Nantes",
+        "state": "Hawaii",
+        "zipCode": 9000
+    },
+    {
+        "firstName": "Arthur",
+        "lastName": "Fill",
+        "dateOfBirth": "04/05/2001",
+        "startDate": "10/10/2017",
+        "department": "Legal",
+        "street": "100 rue dufoin",
+        "city": "Rennes",
+        "state": "Idaho",
+        "zipCode": 86000
+    },
+    {
+        "firstName": "Melanie",
+        "lastName": "true",
+        "dateOfBirth": "04/05/2004",
+        "startDate": "10/10/2016",
+        "department": "Engineering",
+        "street": "50 rue tre",
+        "city": "Paris",
+        "state": "California",
+        "zipCode": 54
+    },
+    {
+        "firstName": "Yves",
+        "lastName": "Gettes",
+        "dateOfBirth": "04/05/2000",
+        "startDate": "10/10/2019",
+        "department": "Sales",
+        "street": "20 rue ducoin",
+        "city": "Toulouse",
+        "state": "Alakama",
+        "zipCode": 100
+    },
+    {
+        "firstName": "Jean",
+        "lastName": "Delarue",
+        "dateOfBirth": "04/05/2000",
+        "startDate": "10/10/2019",
+        "department": "Marketing",
+        "street": "5 rue faubourg",
+        "city": "Marseille",
+        "state": "Arkansas",
+        "zipCode": 140000
+    }
+]
