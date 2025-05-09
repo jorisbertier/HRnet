@@ -5,8 +5,6 @@ const EmployeeContext = createContext()
 
 export const EmployeeProvider = ({ children }) => {
 
-    // const employeeList =  JSON.stringify(EmployeeList)
-    // console.log(employeeList)
     const [employees, setEmployees] = useState(EmployeeList)
 
     const addEmployee = (employee) => {
