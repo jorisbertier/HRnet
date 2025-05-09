@@ -69,7 +69,7 @@ function Form() {
 
     return (
         <>
-            <form action="#" className="create-employee">
+            <form action="#"  onSubmit={handleSubmit} className="create-employee">
                 <label htmlFor="first-name">First Name</label>
                 <input type="text" id="first-name" onChange={(e) => setFirstName(e.target.value)} />
 
@@ -99,13 +99,13 @@ function Form() {
                 </fieldset><br></br>
 
                 <label htmlFor="department">Department</label><br></br>
-                <DropDown data={Department} title={'Choose a department'} getData={handleSelectedDepartment}/>
+                <DropDown data={Department} title={'Choose a department'} getData={handleSelectedDepartment}/><br></br><br></br>
+            {errorMessage && <span className='error'>Veuillez remplir correctement les champs du formulaire ! </span>}<br></br>
+            <button type="submit" className="button">Save</button>
             </form><br></br>
-            {errorMessage && <span className='error'>Veuillez remplir correctement les champs du formulaire ! </span>}
             
             <br></br>
 
-            <button onClick={handleSubmit} className="button">Save</button>
             {/* <button onClick={()=>  setModalIsOpen(true)} className="button">ouvrir</button> */}
             {modalIsOpen &&
             <Modal closeModal={() => setModalIsOpen(false)} text={'Employee Created !'}/>
