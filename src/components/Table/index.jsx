@@ -142,7 +142,12 @@ const Table = () => {
                         <button className="prev" onClick={() => table.previousPage()}>Prev</button>
                     )}
                     {pageNumbers.map((num) => (
-                        <span className="numerotation">{num}</span>
+                        <span
+                            key={num}
+                            className={`numerotation ${num === currentPage ? 'active' : 'inactive'}`}
+                        >
+                            {num}
+                        </span>
 
                     ))}
                     {table.getCanNextPage() && (
