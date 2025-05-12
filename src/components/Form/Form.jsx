@@ -11,6 +11,7 @@ import States from '../../datas/states.json'
 import Department from '../../datas/department.json'
 import { useEmployees } from '../../context/EmployeeContext';
 import { capitalize } from '../../utils/utils';
+import { Navigate } from 'react-router-dom';
 
 function Form() {
 
@@ -25,6 +26,7 @@ function Form() {
     const [selectedState, setSelectedState] = useState('');
     const [selectedDepartment, setSelectedDepartment] = useState('');
     const [errorMessage, setErrorMessage] =  useState({});
+    const [redirect, setRedirect] = useState(false);
     
     registerLocale("fr", fr);
     setDefaultLocale("fr");
@@ -95,7 +97,14 @@ function Form() {
             addEmployee(employee)
             setIsOpen(true)
             resetForm()
+            setTimeout(() => {
+                setRedirect(true);
+            }, 3000);
         }
+    }
+
+    if (redirect) {
+        return <Navigate to="/employeeList" />;
     }
 
     const handleSelectedState = (newState) => {
@@ -189,7 +198,7 @@ function Form() {
             
             <br></br>
 
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} text={'Employee Created !'}/>
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} text={'Employé créée ! Vous allez être redirigé !'}/>
         </>
     )
 }
