@@ -75,6 +75,7 @@ const Table = () => {
                                 </option>
                             ))}
                         </select>
+                        entries
                     </label>
                 </div>
                 <div className="search-box">

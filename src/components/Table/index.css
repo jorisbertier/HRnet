@@ -72,8 +72,12 @@ button {
     padding: 10px;
 }
 
+label {
+    font-size: 18px;
+}
 .bloc-show {
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .table {
