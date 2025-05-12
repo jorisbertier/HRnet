@@ -145,6 +145,7 @@ const Table = () => {
                         <span
                             key={num}
                             className={`numerotation ${num === currentPage ? 'active' : 'inactive'}`}
+                            onClick={() => table.setPageIndex(num - 1)}
                         >
                             {num}
                         </span>
