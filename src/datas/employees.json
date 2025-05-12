@@ -18,9 +18,9 @@
         "startDate": "10/10/2018",
         "department": "Human Resources",
         "street": "5 rue lamarmitte",
-        "city": "Nantes",
+        "city": "Rennes",
         "state": "Hawaii",
-        "zipCode": 9000
+        "zipCode": 50000
     },
     {
         "firstName": "Arthur",
@@ -29,7 +29,7 @@
         "startDate": "10/10/2017",
         "department": "Legal",
         "street": "100 rue dufoin",
-        "city": "Rennes",
+        "city": "Pau",
         "state": "Idaho",
         "zipCode": 86000
     },
@@ -42,7 +42,7 @@
         "street": "50 rue tre",
         "city": "Paris",
         "state": "California",
-        "zipCode": 54
+        "zipCode": 54000
     },
     {
         "firstName": "Yves",
@@ -53,7 +53,7 @@
         "street": "20 rue ducoin",
         "city": "Toulouse",
         "state": "Alakama",
-        "zipCode": 100
+        "zipCode": 10000
     },
     {
         "firstName": "Jean",
@@ -62,8 +62,63 @@
         "startDate": "10/10/2019",
         "department": "Marketing",
         "street": "5 rue faubourg",
-        "city": "Marseille",
+        "city": "Lille",
         "state": "Arkansas",
-        "zipCode": 140000
+        "zipCode": 14000
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Dupont",
+        "dateOfBirth": "12/03/1990",
+        "startDate": "01/06/2015",
+        "department": "Marketing",
+        "street": "12 avenue des Champs",
+        "city": "Lyon",
+        "state": "Maryland",
+        "zipCode": 69002
+    },
+    {
+        "firstName": "Bruno",
+        "lastName": "Moreau",
+        "dateOfBirth": "25/07/1985",
+        "startDate": "15/09/2012",
+        "department": "Marketing",
+        "street": "7 rue Victor Hugo",
+        "city": "Marseille",
+        "state": "Montana",
+        "zipCode": 13001
+    },
+    {
+        "firstName": "Chloé",
+        "lastName": "Bernard",
+        "dateOfBirth": "03/11/1992",
+        "startDate": "20/02/2018",
+        "department": "Human Resources",
+        "street": "34 boulevard Saint-Germain",
+        "city": "Paris",
+        "state": "Nevada",
+        "zipCode": 75005
+    },
+    {
+        "firstName": "David",
+        "lastName": "Girard",
+        "dateOfBirth": "18/01/1988",
+        "startDate": "30/04/2014",
+        "department": "Engineering",
+        "street": "18 chemin de la Forêt",
+        "city": "Toulouse",
+        "state": "Occitanie",
+        "zipCode": 31000
+    },
+    {
+        "firstName": "Eva",
+        "lastName": "Leroy",
+        "dateOfBirth": "09/05/1995",
+        "startDate": "05/07/2020",
+        "department": "Legal",
+        "street": "25 rue du Commerce",
+        "city": "Nantes",
+        "state": "Pays de la Loire",
+        "zipCode": 44000
     }
 ]
