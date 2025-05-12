@@ -14,7 +14,6 @@ import { useEmployees } from '../../context/EmployeeContext';
 function Form() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
-
     const [lastName, setLastName] = useState('')
     const [firstName, setFirstName] = useState('');
     const [street, setStreet] = useState('');
@@ -24,7 +23,6 @@ function Form() {
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
     const [selectedState, setSelectedState] = useState('');
     const [selectedDepartment, setSelectedDepartment] = useState('');
-    // eslint-disable-next-line
     const [errorMessage, setErrorMessage] =  useState({});
     
     registerLocale("fr", fr);
@@ -73,8 +71,6 @@ function Form() {
         setErrorMessage(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-
-    //   console.log(errorMessage)
 
     const handleSubmit = (event)=> {
         event.preventDefault()
@@ -175,7 +171,7 @@ function Form() {
                 <label htmlFor="department">Department</label><br></br>
                 <DropDown data={Department} value={selectedDepartment} title={'Choisir un département'} getData={handleSelectedDepartment}/>
                 {errorMessage.selectedDepartment && <span className='error'>{errorMessage.selectedDepartment}</span>}<br></br>
-                
+
                 <button type="submit" className="button">Save</button>
             </form><br></br>
             

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel, getPaginationRowModel } from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel, getPaginationRowModel, getSortedRowModel } from "@tanstack/react-table";
 import './index.css'
 import { useEmployees } from "../../context/EmployeeContext";
 
@@ -10,6 +10,7 @@ const Table = () => {
         pageIndex: 0,
         pageSize: 5,
     });
+    const [sorting, setSorting] = useState([])
 
     const { employees } = useEmployees()
 
@@ -27,7 +28,7 @@ const Table = () => {
         ],
         []
     );
-    
+
     const filteredData = useMemo(() => {
         return employees.filter(employee => 
             Object.values(employee).some(value =>
@@ -42,11 +43,16 @@ const Table = () => {
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         onPaginationChange: setPagination,
+        onSortingChange: setSorting,
         state: {
             pagination,
+            sorting
         },
     });
+
+    console.log(table.getState().sorting)
 
     const currentPage = pagination.pageIndex + 1;
     const rowsPerPage = Math.min((pagination.pageIndex + 1) *pagination.pageSize, filteredData.length);
@@ -82,8 +88,21 @@ const Table = () => {
                     {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
                         {headerGroup.headers.map((header) => (
-                        <th key={header.id}>
-                            {flexRender(header.column.columnDef.header, header.getContext())}
+                        <th
+                            key={header.id}
+                            onClick={header.column.getToggleSortingHandler()}
+                        >
+                            <div className="header-cell">
+                                <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
+                                <span className="sort-icons">
+                                    <span>
+                                        <svg className={`arrow up ${header.column.getIsSorted() === 'asc' ? 'active' : header.column.getIsSorted() === 'desc' ? 'inactive' : ''}`} height="12px" width="12px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M490,474.459H0L245.009,15.541L490,474.459z"></path> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </g> </g></svg>
+                                    </span>
+                                    <span>
+                                        <svg className={`arrow down ${header.column.getIsSorted() === 'desc' ? 'active' : header.column.getIsSorted() === 'asc' ? 'inactive' : ''}`} height="12px" width="12px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M490,474.459H0L245.009,15.541L490,474.459z"></path> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </g> </g></svg>
+                                    </span>
+                                </span>
+                            </div>
                         </th>
                         ))}
                     </tr>
