@@ -13,6 +13,7 @@ function DropDown({data, title, getData, value}) {
     const handleData = (name) => {
         setDataDropdown(name)
         getData(name)
+        setIsOpen(false)
     }
 
     useEffect(() => {
