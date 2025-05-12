@@ -52,12 +52,17 @@ const Table = () => {
         },
     });
 
-    console.log(table.getState().sorting)
 
     const currentPage = table.getState().pagination.pageIndex + 1;
     const rowsPerPage = Math.min(currentPage * pagination.pageSize, filteredData.length);
     const rowsPerPageInitial = pagination.pageIndex * pagination.pageSize + 1;
-    console.log('state', table.getState())
+    const pageCount = table.getPageCount();
+
+    const pageNumbers = Array.from(
+        { length: pageCount},
+        (_, i) => i + 1
+    );
+
     return (
         <div className="table-container">
             <div className="table-controls">
@@ -136,7 +141,10 @@ const Table = () => {
                     {table.getCanPreviousPage() && (
                         <button className="prev" onClick={() => table.previousPage()}>Prev</button>
                     )}
-                    <span className="numerotation">{currentPage}</span>
+                    {pageNumbers.map((num) => (
+                        <span className="numerotation">{num}</span>
+
+                    ))}
                     {table.getCanNextPage() && (
                         <button className="next" onClick={() => table.nextPage()}>
                             Next
