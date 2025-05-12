@@ -72,6 +72,9 @@ button {
     padding: 10px;
 }
 
+.bloc-show {
+    margin-left: 10px;
+}
 
 .table {
     width: 100%;
