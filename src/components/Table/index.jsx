@@ -54,9 +54,10 @@ const Table = () => {
 
     console.log(table.getState().sorting)
 
-    const currentPage = pagination.pageIndex + 1;
-    const rowsPerPage = Math.min((pagination.pageIndex + 1) *pagination.pageSize, filteredData.length);
-    const rowsPerPageInitial = (pagination.pageIndex * pagination.pageSize) + 1;
+    const currentPage = table.getState().pagination.pageIndex + 1;
+    const rowsPerPage = Math.min(currentPage * pagination.pageSize, filteredData.length);
+    const rowsPerPageInitial = pagination.pageIndex * pagination.pageSize + 1;
+    console.log('state', table.getState())
     return (
         <div className="table-container">
             <div className="table-controls">
@@ -132,11 +133,15 @@ const Table = () => {
             <div className="pagination-container">
                 <div>Showing {rowsPerPageInitial} to {rowsPerPage} of {filteredData.length} entries</div>
                 <div className="pagination">
-                    {!currentPage === 1 &&
-                    <button className="prev" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</button>
-                    }
+                    {table.getCanPreviousPage() && (
+                        <button className="prev" onClick={() => table.previousPage()}>Prev</button>
+                    )}
                     <span className="numerotation">{currentPage}</span>
-                    <button className="next" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
+                    {table.getCanNextPage() && (
+                        <button className="next" onClick={() => table.nextPage()}>
+                            Next
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

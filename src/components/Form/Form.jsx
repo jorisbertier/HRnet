@@ -10,6 +10,7 @@ import DropDown from '../DropDown/DropDown';
 import States from '../../datas/states.json'
 import Department from '../../datas/department.json'
 import { useEmployees } from '../../context/EmployeeContext';
+import { capitalize } from '../../utils/utils';
 
 function Form() {
 
@@ -76,8 +77,8 @@ function Form() {
         event.preventDefault()
         
         const employee = {
-            firstName: firstName,
-            lastName: lastName,
+            firstName: capitalize(firstName),
+            lastName: capitalize(lastName),
             dateOfBirth: format(dateOfBirth, "dd/MM/yyyy"),
             startDate: format(startDate, "dd/MM/yyyy"),
             department: selectedDepartment,

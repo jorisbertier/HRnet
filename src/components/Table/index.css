@@ -189,3 +189,7 @@ tr:nth-child(odd) .sorting_1 {
 tr:nth-child(even) .sorting_1 {
     background-color: #fafafa;
 }
+
+.prev, .next {
+    cursor: pointer;
+}
