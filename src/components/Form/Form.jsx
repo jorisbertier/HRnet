@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './form.css'
-import Modal from 'hrnet-plugin-modal'
+import {Modal} from 'hrnet-plugin3'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
@@ -14,7 +14,7 @@ import { capitalize } from '../../utils/utils';
 
 function Form() {
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [lastName, setLastName] = useState('')
     const [firstName, setFirstName] = useState('');
     const [street, setStreet] = useState('');
@@ -46,6 +46,9 @@ function Form() {
             newErrors.firstName = 'Le prénom doit comporter uniquement des lettres.'
         }
 
+        if (!dateOfBirth || subYears(new Date(), 15) < dateOfBirth) {
+            newErrors.dateOfBirth = "L'âge minimum est de 15 ans.";
+        }
     
         if (street.trim().length < 5) {
             newErrors.street = 'La rue est requise, minimum 5 caractères.';
@@ -90,7 +93,7 @@ function Form() {
         if(validate()) {
             console.log('Formulaire envoyé!')
             addEmployee(employee)
-            setModalIsOpen(true)
+            setIsOpen(true)
             resetForm()
         }
     }
@@ -133,9 +136,17 @@ function Form() {
                     id="date-of-birth"
                     selected={dateOfBirth}
                     showIcon
-                    onChange={(date) => setDateOfBirth(date)}
+                    showYearDropdown
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={100}
+                    onChange={(date) => {
+                        if (date) {
+                            setDateOfBirth(date);
+                        }
+                    }}
                     dateFormat="dd/MM/yyyy"
                 />
+                {errorMessage.dateOfBirth && <><span className='error'>{errorMessage.dateOfBirth}</span><br></br></>}
                 <span>*L'Âge doît être au minimum de 15 ans</span><br></br>
 
                 <label htmlFor="start-date">Start Date</label>
@@ -165,7 +176,7 @@ function Form() {
                     {errorMessage.selectedState && <><span className='error'>{errorMessage.selectedState}</span><br></br><br></br></>}
 
                     <label htmlFor="zip-code">Zip Code</label><br></br>
-                    <input id="zip-code" value={zipCode} className="zip-code" type="text" onChange={(e) => setZipCode(e.target.value)}  /><br></br>
+                    <input id="zip-code" value={zipCode} className="zip-code" type="number" onChange={(e) => setZipCode(e.target.value)}  /><br></br>
                     {errorMessage.zipCode && <span className='error'>{errorMessage.zipCode}</span>}
                 </fieldset><br></br>
 
@@ -178,9 +189,7 @@ function Form() {
             
             <br></br>
 
-            {modalIsOpen &&
-            <Modal closeModal={() => setModalIsOpen(false)} text={'Employee Created !'}/>
-            }
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} text={'Employee Created !'}/>
         </>
     )
 }
