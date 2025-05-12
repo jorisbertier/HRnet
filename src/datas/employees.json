@@ -35,7 +35,7 @@
     },
     {
         "firstName": "Melanie",
-        "lastName": "true",
+        "lastName": "True",
         "dateOfBirth": "04/05/2004",
         "startDate": "10/10/2016",
         "department": "Engineering",
