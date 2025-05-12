@@ -8,13 +8,6 @@
 > -   Program in JavaScript with functional programming 🤖
 > -   Refactor an application to reduce technical debt 🛠️
 
-### Project (fictional) situation:
-
-Developer in the technology department of a large financial company.
-
-This company uses an internal web application that manages employee records. The application is old and uses jQuery on the front-end, which results in considerable bugs and an increase in internal complaints.
-
-My role was to upgrade the application using React, to convert one of the four jQuery plugins used by the application into a React library and publish this library.
 
 ### Specifications:
 
@@ -43,11 +36,11 @@ My role was to upgrade the application using React, to convert one of the four j
 
 ## Developed with:
 
--   [Visual Studio Code](https://code.visualstudio.com/) - Text editor
--   [Css]
--   [React 19](https://reactjs.org/) - Free and open-source JavaScript library developed by Facebook
+-   [Visual Studio Code](https://code.visualstudio.com/)
+-   [Css]()
+-   [React 19](https://reactjs.org/)
 -   [create vite@latest]()
--   [ContextAPI]
+-   [ContextAPI]()
 -   [Hosting Vercel](https://h-rnet-two.vercel.app/)
 
 ## Author:
