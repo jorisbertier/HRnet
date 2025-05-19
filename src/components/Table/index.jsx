@@ -14,6 +14,7 @@ const Table = () => {
 
     const { employees } = useEmployees()
 
+    //initialize columns table
     const columns = useMemo(
         () => [
             { accessorKey: "firstName", header: "First Name" },
@@ -37,6 +38,7 @@ const Table = () => {
         )      
     }, [employees, search]);
 
+    //config table
     const table = useReactTable({
         data : filteredData,
         columns,
