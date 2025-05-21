@@ -14,7 +14,6 @@ const Table = () => {
 
     const { employees } = useEmployees()
 
-    //initialize columns table
     const columns = useMemo(
         () => [
             { accessorKey: "firstName", header: "First Name" },
